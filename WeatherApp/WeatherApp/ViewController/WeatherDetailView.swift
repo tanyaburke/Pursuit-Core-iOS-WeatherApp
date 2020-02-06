@@ -28,8 +28,10 @@ class WeatherDetailView: UIView {
    
     public lazy var favButton: UIButton = {
         let button = UIButton()
-        button.titleLabel?.text = "FavImage"
-        button.backgroundColor = .orange
+        button.setTitle("FavImage", for: .normal)
+        button.setTitleColor(.systemRed, for: .normal)
+        button.backgroundColor = .gray
+        button.isEnabled = Bool()
 //        button.touchesBegan(<#T##touches: Set<UITouch>##Set<UITouch>#>, with: .<#T##UIEvent?#>)
         return button
     }()
@@ -60,7 +62,9 @@ class WeatherDetailView: UIView {
            
         }
          
-      
+    func favButtonSetup(){
+        
+    }
    
         func setUpImageViewConstraints() {
            
@@ -103,9 +107,10 @@ class WeatherDetailView: UIView {
            addSubview(favButton)
            favButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            favButton.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 20),
-            favButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            favButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20)
+           favButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            favButton.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 10),
+//            favButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+//            favButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20)
         
         
         

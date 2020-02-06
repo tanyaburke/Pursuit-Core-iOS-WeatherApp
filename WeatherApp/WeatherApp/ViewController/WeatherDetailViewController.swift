@@ -28,7 +28,8 @@ class WeatherDetailViewController: UIViewController {
         public var photo: Photo?
         public var weather: DailyForecast?
         public var cityName: String?
-        public let dataPersistance = DataPersistence<Photo>(filename: "favPhotos.plist")
+       
+    public let dataPersistance = DataPersistence<Photo>(filename: "favPhotos.plist")
         
         
         override func viewDidLayoutSubviews() {
@@ -41,6 +42,7 @@ class WeatherDetailViewController: UIViewController {
             updateUI()
             checkPhoto()
             view.backgroundColor = .white
+            weatherDV.favButton.addTarget(self, action: #selector(addFavButton(_:)), for: .touchUpInside)
         }
        
         override func loadView() {
@@ -48,7 +50,10 @@ class WeatherDetailViewController: UIViewController {
         }
         
         
-        
+        @objc
+        private func addFavButton(_ sender: UIButton){
+            print("AHHHHHHHHHH")
+        }
         
         private func checkPhoto() {
         
@@ -77,11 +82,11 @@ class WeatherDetailViewController: UIViewController {
          
            navigationItem.title = cityName
             
-            weatherDV.weatherLabel.text = "\(Double(weather.time).convertToDate(dateFormat: "EEEE, MMM d, yyyy"))/n \(String(describing: weather.summary)) /nHIgh:\(weather.temperatureHigh) °F /nLow:\(weather.temperatureLow) °F /nWindSpeed: \(weather.windSpeed) mph /nPercipitationPossiblilty:\(weather.precipProbability)%"
+            weatherDV.weatherLabel.text = "\(Double(weather.time).convertToDate(dateFormat: "EEEE, MMM d, yyyy"))/n \(String(describing: weather.summary)) \nHigh:\(weather.temperatureHigh) °F \nLow:\(weather.temperatureLow) °F \nWindSpeed: \(weather.windSpeed) mph \nPercipitationPossiblilty:\(weather.precipProbability)%"
             
             guard let photo = photo else {
                 DispatchQueue.main.async {
-                    self.weatherDV.imageView.image = UIImage(named: "world")
+                    self.weatherDV.imageView.image = UIImage(named: "newYork")
                 }
                 return
             }

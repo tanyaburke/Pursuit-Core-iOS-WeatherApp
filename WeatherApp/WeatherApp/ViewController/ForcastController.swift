@@ -63,22 +63,23 @@ class ForcastController: UIViewController {
             zipcodeTextFeild.text = zipCode
             getCityWeather(zipCode: zipCode)
             
-            navigationController?.navigationBar.prefersLargeTitles = true
+            
             navigationItem.title = "Todays Weather"
             view.backgroundColor = .yellow
             
-
-           
         }
         
         private func getCityWeather(zipCode: String) {
+          
             ZipCodeHelper.getLatLong(fromZipCode: zipCode) { [weak self] (results) in
+                
                 switch results {
                 case .success(let location):
 
                     self!.getWeather(lat: location.lat, long: location.long)
                     
                 case .failure(let error):
+                    
                     self?.showAlert(title: "Check Zipcode", message: " please try again")
                     self?.zipcodeTextFeild.text = ""
                     print(error)
@@ -98,17 +99,7 @@ class ForcastController: UIViewController {
             }
         }
         
-        private func getCityPhotos(city: String) {
-            PhotoApiClient.getPhotos(searchQuery: city) { [weak self] (result) in
-                switch result {
-                case .failure(let appError):
-                    print("api client error: \(appError)")
-                case .success(let photos):
-                    self?.cityPhotos = photos
-                }
-            }
-        }
-    }
+}
 
 extension ForcastController: UITextFieldDelegate {
     
