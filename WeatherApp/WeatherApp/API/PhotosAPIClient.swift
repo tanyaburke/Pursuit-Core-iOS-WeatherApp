@@ -13,7 +13,7 @@ struct PhotoApiClient {
     
     static func getPhotos(searchQuery: String, completion: @escaping (Result<[Photo], AppError>)-> ()) {
         
-        let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "Hello"
+        let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "Canada"
         
         let endpoint = "https://pixabay.com/api/?key=\(SecretsKey.pixabayApiKey)&q=\(searchQuery)"
         
@@ -27,17 +27,17 @@ struct PhotoApiClient {
         NetworkHelper.shared.performDataTask(with: request) { (result) in
             switch result {
             case .failure(let appError):
-                // network error
+                
                 completion(.failure(.networkClientError(appError)))
             case .success(let data):
                 do {
-                    // parse data
+                    
                     let results = try JSONDecoder().decode(PhotoSearch.self, from: data)
                     let photos = results.hits
                     completion(.success(photos))
                     
                 } catch {
-                    // decoding error
+                    
                     completion(.failure(.decodingError(error)))
                 }
             }

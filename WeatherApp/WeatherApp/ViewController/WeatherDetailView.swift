@@ -12,44 +12,54 @@ class WeatherDetailView: UIView {
 
         
         public lazy var todayLabel: UILabel = {
+            
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 25, weight: UIFont.Weight.light)
             label.text = "Today's Forcast"
             return label
+            
            }()
         
         public lazy var weatherLabel: UILabel = {
+            
              let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 20)
-            label.numberOfLines = 6
+            label.numberOfLines = 7
+            label.textAlignment = .center
              label.text = "Summary goes here"
+            
              return label
         }()
    
     public lazy var favButton: UIButton = {
+        
         let button = UIButton()
-        button.setTitle("FavImage", for: .normal)
+        button.setTitle("Save Image", for: .normal)
         button.setTitleColor(.systemRed, for: .normal)
-        button.backgroundColor = .gray
-        button.isEnabled = Bool()
-//        button.touchesBegan(<#T##touches: Set<UITouch>##Set<UITouch>#>, with: .<#T##UIEvent?#>)
+        button.backgroundColor = .systemYellow
+        button.isEnabled = true
+        
         return button
     }()
         
         public lazy var imageView: UIImageView = {
+            
             let imageView = UIImageView()
             imageView.backgroundColor = .yellow
+            
             return imageView
         }()
         
       
         
         override init(frame: CGRect) {
+            
             super.init(frame: UIScreen.main.bounds)
             commonInit()
         }
         
         required init?(coder: NSCoder) {
+            
             super.init(coder: coder)
             commonInit()
         }
@@ -59,12 +69,11 @@ class WeatherDetailView: UIView {
             setUpImageViewConstraints()
             setuptodayLabelConstraints()
             setupWeatherLabelConstraints()
+            setupfavButtonConstraints()
            
         }
          
-    func favButtonSetup(){
-        
-    }
+    
    
         func setUpImageViewConstraints() {
            
@@ -82,6 +91,7 @@ class WeatherDetailView: UIView {
        
      
         private func setuptodayLabelConstraints() {
+            
             addSubview(todayLabel)
             todayLabel.translatesAutoresizingMaskIntoConstraints = false
             
@@ -93,6 +103,7 @@ class WeatherDetailView: UIView {
         }
         
         private func setupWeatherLabelConstraints() {
+            
             addSubview(weatherLabel)
             weatherLabel.translatesAutoresizingMaskIntoConstraints = false
             
@@ -104,14 +115,12 @@ class WeatherDetailView: UIView {
         }
         
     func setupfavButtonConstraints(){
+        
            addSubview(favButton)
            favButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
            favButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            favButton.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 10),
-//            favButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-//            favButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20)
-        
+            favButton.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 10)
         
         
         ])

@@ -18,10 +18,7 @@ class WeatherCell: UICollectionViewCell {
     
 
       public func configureWeatherCell(dayWeather: DailyForecast) {
-//        weatherImage?.image = UIImage(named: dayWeather.icon)
-        
-        
-//        forcastLabel.text = dayWeather.
+
         weatherImage?.image = UIImage(named: (dayWeather.icon ??  "clear-day") )
         forcastLabel.text = "High:\(dayWeather.temperatureHigh.description)\n  Low:\(dayWeather.temperatureLow.description)"
      

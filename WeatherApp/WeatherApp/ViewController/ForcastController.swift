@@ -130,8 +130,7 @@ extension ForcastController: UITextFieldDelegate {
             
             let weather = weeksForcast[indexPath.row]
             cell.configureWeatherCell(dayWeather: weather)
-//            cell.weatherImage.image = UIImage(named: weather.icon)
-//            cell.forcastLabel.text = weather.summary
+
             cell.backgroundColor = .orange
             return cell
         }
@@ -142,10 +141,10 @@ extension ForcastController: UITextFieldDelegate {
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             
             
-            let interItemSpacing: CGFloat = 10 // space betweem items
-            let maxWidth = UIScreen.main.bounds.size.width // device width
+            let interItemSpacing: CGFloat = 10
+            let maxWidth = UIScreen.main.bounds.size.width
             
-            let numberOfItems: CGFloat = 1 // items
+            let numberOfItems: CGFloat = 1
             let totalSpacing: CGFloat = numberOfItems * interItemSpacing
             
             let itemWidth: CGFloat = (maxWidth - totalSpacing)/numberOfItems
@@ -154,7 +153,7 @@ extension ForcastController: UITextFieldDelegate {
         }
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-            // padding sround collectionview
+           
             return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         }
         

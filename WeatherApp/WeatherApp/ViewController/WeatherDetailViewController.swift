@@ -63,15 +63,13 @@ class WeatherDetailViewController: UIViewController {
             }
             
             do {
-                let favs = try dataPersistance.loadItems()
-                if favs.contains(photo) {
+                let favs = dataPersistance.hasItemBeenSaved(photo)
+                if favs {
                     weatherDV.favButton.isEnabled = false
                 }
-            } catch {
-                print("error geting favs on detail vc")
+           
+            
             }
-            
-            
         }
         
         private func updateUI() {
@@ -82,7 +80,7 @@ class WeatherDetailViewController: UIViewController {
          
            navigationItem.title = cityName
             
-            weatherDV.weatherLabel.text = "\(Double(weather.time).convertToDate(dateFormat: "EEEE, MMM d, yyyy"))/n \(String(describing: weather.summary)) \nHigh:\(weather.temperatureHigh) °F \nLow:\(weather.temperatureLow) °F \nWindSpeed: \(weather.windSpeed) mph \nPercipitationPossiblilty:\(weather.precipProbability)%"
+            weatherDV.weatherLabel.text = "\(Double(weather.time).convertToDate(dateFormat: "EEEE, MMM d, yyyy"))\n \(String(describing: weather.summary)) \nHigh:\(weather.temperatureHigh) °F \nLow:\(weather.temperatureLow) °F \nWindSpeed: \(weather.windSpeed) mph \nPercipitationPossiblilty:\(weather.precipProbability)%"
             
             guard let photo = photo else {
                 DispatchQueue.main.async {

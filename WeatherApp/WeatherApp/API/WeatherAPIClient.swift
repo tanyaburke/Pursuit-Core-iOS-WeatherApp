@@ -10,6 +10,8 @@ import Foundation
 import NetworkHelper
 
 struct WeatherAPIClient {
+    
+    
     static func getWeatherInfo(lat: Double, long: Double, completion: @escaping (Result<Weather, AppError>)-> ()) {
 
 
@@ -19,16 +21,16 @@ struct WeatherAPIClient {
             completion(.failure(.badURL(endpoint)))
             return
         }
-        // make a request
-        let request = URLRequest(url: url) // this is what is passed to URLSession in network helper
+        
+        let request = URLRequest(url: url)
 
         NetworkHelper.shared.performDataTask(with: request) { (result) in
-            // result is either data or an error
+           
             switch result {
             case .failure(let appError):
                 completion(.failure(.networkClientError(appError)))
             case .success(let data):
-                 // use model to Parse data
+                 
                 do {
                     let weatherData = try JSONDecoder().decode(Weather.self, from: data)
                     completion(.success(weatherData))

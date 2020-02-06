@@ -19,7 +19,7 @@ class FavoriteViewCell: UICollectionViewCell {
                 case .failure(let appError):
                     print(appError)
                     DispatchQueue.main.async {
-     self?.favImage.image = UIImage(systemName: "heart")
+     self?.favImage.image = UIImage(systemName: "newYork")
                     }
                 case .success(let image):
                     DispatchQueue.main.async {
