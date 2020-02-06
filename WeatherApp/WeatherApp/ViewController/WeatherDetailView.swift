@@ -14,13 +14,13 @@ class WeatherDetailView: UIView {
         public lazy var todayLabel: UILabel = {
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 25, weight: UIFont.Weight.light)
-            label.text = "Today"
+            label.text = "Today's Forcast"
             return label
            }()
         
         public lazy var weatherLabel: UILabel = {
              let label = UILabel()
-            label.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.thin)
+            label.font = UIFont.systemFont(ofSize: 20)
             label.numberOfLines = 6
              label.text = "Summary goes here"
              return label
@@ -29,14 +29,14 @@ class WeatherDetailView: UIView {
     public lazy var favButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.text = "FavImage"
-        
+        button.backgroundColor = .orange
 //        button.touchesBegan(<#T##touches: Set<UITouch>##Set<UITouch>#>, with: .<#T##UIEvent?#>)
         return button
     }()
         
         public lazy var imageView: UIImageView = {
             let imageView = UIImageView()
-            
+            imageView.backgroundColor = .yellow
             return imageView
         }()
         
@@ -53,8 +53,8 @@ class WeatherDetailView: UIView {
         }
         
         private func commonInit() {
-            setUpImageViewConstraints()
            
+            setUpImageViewConstraints()
             setuptodayLabelConstraints()
             setupWeatherLabelConstraints()
            
@@ -63,11 +63,12 @@ class WeatherDetailView: UIView {
       
    
         func setUpImageViewConstraints() {
+           
             addSubview(imageView)
             imageView.translatesAutoresizingMaskIntoConstraints = false
-            
             NSLayoutConstraint.activate([
-                imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
+                imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+                imageView.heightAnchor.constraint(equalToConstant: 220),
                 imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
                 imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
             ])

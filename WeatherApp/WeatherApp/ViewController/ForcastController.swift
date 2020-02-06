@@ -64,7 +64,7 @@ class ForcastController: UIViewController {
             getCityWeather(zipCode: zipCode)
             
             navigationController?.navigationBar.prefersLargeTitles = true
-            navigationItem.title = "     Todays Weather"
+            navigationItem.title = "Todays Weather"
             view.backgroundColor = .yellow
             
 
@@ -169,13 +169,10 @@ extension ForcastController: UITextFieldDelegate {
         
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
          
-            // get instance of storyboard
+           
+           let detailVC = WeatherDetailViewController()
             
-            let detailStoryBoard = UIStoryboard(name: "WeatherDetail", bundle: nil) 
-            
-            guard let detailVC = detailStoryBoard.instantiateViewController(identifier: "WeatherDetailViewController") as? WeatherDetailViewController else {
-                fatalError("could not downcast to DetailController")
-            }
+
             
             
             if  cityPhotos.count != 0 {

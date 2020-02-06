@@ -14,13 +14,14 @@ import DataPersistence
 //- A table view that contains all of the images that have been favorited.
 //
 //The image at the top should be the most recently favorited image.
+
 class FavoritesController: UIViewController {
 
 
     @IBOutlet weak var collectionView: UICollectionView!
     
    
-    
+   
     
     private var favorites = [Photo]() {
         didSet {
@@ -32,9 +33,7 @@ class FavoritesController: UIViewController {
     
     private let dataPersistance = DataPersistence<Photo>(filename: "favPhotos.plist")
     
-    override func loadView() {
-       
-    }
+    
     
     override func viewDidLoad() {
     
@@ -44,7 +43,6 @@ class FavoritesController: UIViewController {
         
 
         collectionView.dataSource = self
-        collectionView.register(FavoriteViewCell.self, forCellWithReuseIdentifier: "favCell")
       collectionView.delegate = self
         
     }
@@ -105,5 +103,24 @@ class FavoritesController: UIViewController {
         return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
 
     }
-
-    }
+        
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+                
+                  
+                   
+                   let detailStoryBoard = UIStoryboard(name: "WeatherDetail", bundle: nil)
+                   
+                   guard let detailVC = detailStoryBoard.instantiateViewController(identifier: "WeatherDetailViewController") as? WeatherDetailViewController else {
+                       fatalError("could not downcast to DetailController")
+                   }
+                   
+                   
+                   if  favorites.count != 0 {
+                       detailVC.photo = favorites[indexPath.row]
+                   }
+                   
+//                    detailVC.weather = [indexPath.row]
+                    navigationController?.pushViewController(detailVC, animated: true)
+               }
+           }
+    

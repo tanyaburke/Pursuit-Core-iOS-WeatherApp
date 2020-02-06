@@ -40,6 +40,7 @@ class WeatherDetailViewController: UIViewController {
 
             updateUI()
             checkPhoto()
+            view.backgroundColor = .white
         }
        
         override func loadView() {
