@@ -80,9 +80,9 @@
 			children = (
 				2E22221A23EAAA73001DD83C /* WeatherTabController.swift */,
 				548CE055234D33B500B5177D /* ForcastController.swift */,
-				2E82AA2323E4B92D00D9427D /* FavoritesController.swift */,
 				2E82AA2123E4B91600D9427D /* WeatherDetailViewController.swift */,
 				2E4DCCB423EB1530008F5CD8 /* WeatherDetailView.swift */,
+				2E82AA2323E4B92D00D9427D /* FavoritesController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

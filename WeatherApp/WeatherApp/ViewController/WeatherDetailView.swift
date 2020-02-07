@@ -113,7 +113,9 @@ class WeatherDetailView: UIView {
                 weatherLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
             ])
         }
-        
+      
+    
+    
     func setupfavButtonConstraints(){
         
            addSubview(favButton)

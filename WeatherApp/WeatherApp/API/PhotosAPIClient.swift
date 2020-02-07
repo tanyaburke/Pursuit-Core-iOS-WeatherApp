@@ -11,7 +11,7 @@ import NetworkHelper
 
 struct PhotoApiClient {
     
-    static func getPhotos(searchQuery: String, completion: @escaping (Result<[Photo], AppError>)-> ()) {
+    static func getPhotos(searchQuery: String, completion: @escaping (Result<Photo?, AppError>)-> ()) {
         
         let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "Canada"
         
@@ -33,7 +33,7 @@ struct PhotoApiClient {
                 do {
                     
                     let results = try JSONDecoder().decode(PhotoSearch.self, from: data)
-                    let photos = results.hits
+                    let photos = results.hits.first
                     completion(.success(photos))
                     
                 } catch {

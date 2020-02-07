@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+
 //- A Label that names the city for the forecast
 //- A CollectionView to show the forecasts
 //- A TextField for the user to enter the zip code
@@ -26,7 +27,7 @@ class ForcastController: UIViewController {
    
     
        public var cityPhotos = [Photo]()
-       
+    public var placeName: String?
        
        private var weeksForcast = [DailyForecast]() {
            didSet {
@@ -64,7 +65,7 @@ class ForcastController: UIViewController {
             getCityWeather(zipCode: zipCode)
             
             
-            navigationItem.title = "Todays Weather"
+            navigationItem.title = "This Weeks Weather"
             view.backgroundColor = .yellow
             
         }
@@ -77,7 +78,7 @@ class ForcastController: UIViewController {
                 case .success(let location):
 
                     self!.getWeather(lat: location.lat, long: location.long)
-                    
+                    self?.placeName = location.placeName
                 case .failure(let error):
                     
                     self?.showAlert(title: "Check Zipcode", message: " please try again")
@@ -149,7 +150,7 @@ extension ForcastController: UITextFieldDelegate {
             
             let itemWidth: CGFloat = (maxWidth - totalSpacing)/numberOfItems
             
-            return CGSize(width: itemWidth, height: itemWidth * 1.2)
+            return CGSize(width: itemWidth, height: collectionView.bounds.size.height * 0.8)
         }
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -162,15 +163,8 @@ extension ForcastController: UITextFieldDelegate {
            
            let detailVC = WeatherDetailViewController()
             
-
-            
-            
-            if  cityPhotos.count != 0 {
-                detailVC.photo = cityPhotos[indexPath.row]
-            }
-            
             detailVC.weather = weeksForcast[indexPath.row]
-            detailVC.cityName = cityName.text
+            detailVC.cityName = placeName
             
             navigationController?.pushViewController(detailVC, animated: true)
         }
